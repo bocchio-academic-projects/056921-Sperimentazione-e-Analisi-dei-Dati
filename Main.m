@@ -30,12 +30,12 @@ names = {'Cube files/au-dens-0.cube', ...
     'Cube files/h2o-nopot-dens.cube', ...
     'densita.cube'};
 
-cube_file_name = string(names(1));
+cube_file_name = string(names(end));
 
 rho_0 = 0.3;
 delta_rho = 0.05;
 
-N_lithium = 300;
+N_lithium = 10;
 R_lithium  = 0.3;
 
 graph = true;
@@ -113,7 +113,7 @@ ORIGIN_VECTOR = struct2array(ORIGIN)';
 density = reshape(data, AXIS(3).N, AXIS(2).N, AXIS(1).N, DIM4);
 density = permute(density, [3, 2, 1, 4]);
 
-% We consider just the first level of the fourth dimension to simplify 
+% We consider just the first level of the fourth dimension to simplify
 density = density(:,:,:,1);
 
 % Plot N slice of the electronic density data
@@ -229,7 +229,7 @@ for i = 1:N_lithium
         % Initialize a matrix to store the distances
         num_points = length([LI_POSITION.X]);
         D = zeros(num_points, 1);
-        
+
         % Calculate the distances
         for j = 1:num_points
             dx = LI.X - LI_POSITION(j).X;
